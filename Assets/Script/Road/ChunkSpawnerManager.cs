@@ -41,11 +41,7 @@ public class ChunkSpawnerManager : MonoBehaviour
     {
         foreach (var chunk in activeChunks)
         {
-            Rigidbody rb = chunk.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.velocity = Vector3.back * chunkSpeed;
-            }
+            chunk.transform.Translate(Vector3.back * chunkSpeed * Time.fixedDeltaTime);
         }
     }
     private void PoolChunks()

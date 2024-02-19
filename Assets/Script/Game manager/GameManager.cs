@@ -1,106 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] float _lifeRegenTime = 4.2f;
-    [SerializeField] AudioClip[] _sounds;
-    private int _life = 2;
-    public event System.Action OnBump;
-    public event System.Action OnLifeRegenerated;
-    public event System.Action OnGameEnd;
-    public event System.Action OnLifeless;
-    public event System.Action OnCrashed;
-    public event System.Action OnIntroStarted;
-    public event System.Action OnGameStarted;
-    public bool IsGameEnded { get; private set; }
-    public bool IsGameStarted { get; private set; }
-    [HideInInspector] public bool isIntroStarted;
-    public static GameManager Instance;
+    public Text score;
+    public static int scoreValue;
+    //is the game over
+    bool gameHasEnded = false;
+    public Animator playerAnimator;
+    public GameObject mainMenuPanel;
+    public Animator mainMenuAnimator;
+    public GameObject gameOverPanel;
+    public Animator gameOverAnimator;
 
-    private WaitForSeconds _startGameDelay = new WaitForSeconds(1.2f);
-    private AudioSource _audioSource;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
 
-        IsGameStarted = false;
-        _audioSource = GetComponent<AudioSource>();
-    }
-    public void ChangingSideCrash()
+    private void Update()
     {
-        _life--;
-        if (_life <= 0)
+        score.text = "" + scoreValue;
+    }
+
+    public void EndGame()
+    {
+        if (gameHasEnded == false)
         {
-            EndGame(true);
-        }
-        else
-        {
-            OnBump?.Invoke();
-            StartCoroutine(LifeRegen());
+            gameHasEnded = true;
+            gameOverPanel.SetActive(true);
         }
     }
-    public void EndGame(bool isLifeless)
+    public void MainMenu()
     {
-        if (isLifeless)
-        {
-            PlaySound(5);
-            OnLifeless?.Invoke();
-        }
-        else
-        {
-            PlaySound(6);
-            OnCrashed?.Invoke();
-        }
-        IsGameEnded = true;
-        OnGameEnd?.Invoke();
+        scoreValue = 0;
     }
-    public void StartIntro()
+    public void Restart()
     {
-        if (isIntroStarted) return;
-        PlaySound(4);
-        isIntroStarted = true;
-        OnIntroStarted?.Invoke();
-        StartCoroutine(StartGameWithDelay());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void StartGame()
+
+    public void Quit()
     {
-        IsGameStarted = true;
-        OnGameStarted?.Invoke();
-    }
-    public void PlaySound(int index)
-    {
-        _audioSource.PlayOneShot(_sounds[index]);
-    }
-    private IEnumerator LifeRegen()
-    {
-        float timeCounter = 0f;
-        do
-        {
-            timeCounter += Time.deltaTime;
-            if (timeCounter >= _lifeRegenTime)
-            {
-                OnLifeRegenerated?.Invoke();
-                timeCounter = 0f;
-                _life++;
-            }
-            if (IsGameEnded)
-                yield break;
-            yield return null;
-        }
-        while (_life < 2);
-    }
-    private IEnumerator StartGameWithDelay()
-    {
-        yield return _startGameDelay;
-        StartGame();
+        Application.Quit();
     }
 }

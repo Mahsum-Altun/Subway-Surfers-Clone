@@ -20,11 +20,11 @@ public class CameraController : MonoBehaviour
     [Header("Boundaries")]
     public bool useBoundaries = false;
     public Vector2 minXAndMaxX;
+    public Vector2 minXAndMaxY;
     public Vector2 minZAndMaxZ;
 
     private void Start()
     {
-        offset = transform.position - target.position;
         rotationOffset = transform.rotation.eulerAngles - target.rotation.eulerAngles;
     }
 
@@ -47,6 +47,7 @@ public class CameraController : MonoBehaviour
         {
             Vector3 clampedPosition = transform.position;
             clampedPosition.x = Mathf.Clamp(clampedPosition.x, minXAndMaxX.x, minXAndMaxX.y);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, minXAndMaxY.y, minXAndMaxY.y);
             clampedPosition.z = Mathf.Clamp(clampedPosition.z, minZAndMaxZ.x, minZAndMaxZ.y);
             transform.position = clampedPosition;
         }
