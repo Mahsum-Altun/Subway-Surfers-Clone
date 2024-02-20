@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private Touch touch;
     private Vector2 initPos;
     private Vector2 endPos;
-    private bool isRolling = false;
     private int collisionCount = 3;
     public GameObject characterMesh;
 
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             HandleMobileInput();
         }
 
-        PlayerMove();
     }
 
     private void HandlePCInput()
@@ -83,7 +81,7 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
-            else if (swipeDistanceY < -MobileSwipeThreshold && !isRolling)
+            else if (swipeDistanceY < -MobileSwipeThreshold)
             {
                 Roll();
             }
@@ -100,7 +98,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(direction * Time.fixedDeltaTime);
+        controller.Move(direction * Time.deltaTime);
+        PlayerMove();
     }
 
     private void PlayerMove()
@@ -136,7 +135,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Roll");
         controller.height = 0f;
         controller.center = new Vector3(controller.center.x, 0.34f, controller.center.z);
-        isRolling = true;
     }
 
     private void MoveLane(int direction)
@@ -156,7 +154,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnRollAnimationFinished()
     {
-        isRolling = false;
         controller.center = new Vector3(controller.center.x, 0.84f, controller.center.z);
         controller.height = 1.83f;
     }
@@ -165,7 +162,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("Game over!");
             if (collisionCount > 0)
             {
                 StartCoroutine(BlinkAndInvincible(2.0f));

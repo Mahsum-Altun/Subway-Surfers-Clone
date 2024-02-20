@@ -460,8 +460,8 @@ MonoBehaviour:
   playerTransform: {fileID: 1273694202}
   size: 10
   spawnZ: 10
-  spawnZUpdate: 300
   chunkSpeed: 20
+  _spawnPos: {x: 0, y: 0, z: 50}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +551,6 @@ MonoBehaviour:
   jumpForce: 10
   gravity: -20
   characterMesh: {fileID: 1097954622}
-  transitionSpeed: 10
 --- !u!1001 &1561282838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -564,6 +563,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317703900347206814, guid: 8d63604d1229cd246ad42a6504c3d51f,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317703900347206814, guid: 8d63604d1229cd246ad42a6504c3d51f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317703900347206814, guid: 8d63604d1229cd246ad42a6504c3d51f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 2229479234958035815, guid: 8d63604d1229cd246ad42a6504c3d51f,
         type: 3}
