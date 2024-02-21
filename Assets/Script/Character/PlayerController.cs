@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 endPos;
     private int collisionCount = 3;
     public GameObject characterMesh;
+    public GameManager gameManager;
 
     private const float MobileSwipeThreshold = 300;
     private const float MobileSwipeRightThreshold = 100;
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                gameManager.EndGame();
                 Debug.Log("Game over!");
             }
         }

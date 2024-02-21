@@ -687,6 +687,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8639699437037878775}
   - component: {fileID: 7285658722548377784}
+  - component: {fileID: -4170652655638038504}
+  - component: {fileID: 8979739490131396015}
   m_Layer: 0
   m_Name: Car
   m_TagString: Obstacle
@@ -731,6 +733,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5971527, y: 1.3362151, z: 3.8692627}
   m_Center: {x: -0.013240814, y: 0.86021775, z: 0.12799072}
+--- !u!54 &-4170652655638038504
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8500179693915271222}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8979739490131396015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8500179693915271222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ccfea64739f24488c5da1460fb5bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8757182311240505255
 GameObject:
   m_ObjectHideFlags: 0
