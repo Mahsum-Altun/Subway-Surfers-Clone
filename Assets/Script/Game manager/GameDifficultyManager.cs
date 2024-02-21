@@ -13,7 +13,7 @@ public class GameDifficultyManager : MonoBehaviour
     private bool limitReached = false;
     public float speed;
     ChunkSpawnerManager chunkSpawnerManager;
-    private void Awake()
+    private void Start()
     {
         speed = startSpeed;
         chunkSpawnerManager = GetComponent<ChunkSpawnerManager>();
